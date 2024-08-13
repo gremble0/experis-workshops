@@ -16,6 +16,8 @@ public class Quiz {
     }
 
     static final int numQuestions = 5;
+    static final int minFactor = 1;
+    static final int maxFactor = 10;
     static Random randomizer = new Random();
     static Scanner scanner = new Scanner(System.in);
     static ArrayList<Question> questions = new ArrayList<>();
@@ -23,8 +25,8 @@ public class Quiz {
 
     public static void main(String[] args) {
         for (int i = 0; i < numQuestions; ++i) {
-            int lhs = randomizer.nextInt(10);
-            int rhs = randomizer.nextInt(10);
+            int lhs = randomizer.nextInt(minFactor, maxFactor);
+            int rhs = randomizer.nextInt(minFactor, maxFactor);
             System.out.println(lhs + " * " + rhs + " = ");
 
             questions.add(new Question(lhs, rhs));
