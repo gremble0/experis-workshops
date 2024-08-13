@@ -23,21 +23,12 @@ public class Quiz {
     static ArrayList<Question> questions = new ArrayList<>();
     static ArrayList<Integer> answers = new ArrayList<>();
 
-    public static void main(String[] args) {
-        for (int i = 0; i < numQuestions; ++i) {
-            int lhs = randomizer.nextInt(minFactor, maxFactor);
-            int rhs = randomizer.nextInt(minFactor, maxFactor);
-            System.out.println(lhs + " * " + rhs + " = ");
-
-            questions.add(new Question(lhs, rhs));
-            answers.add(scanner.nextInt());
-        }
-
+    static void printReport() {
         for (int i = 0; i < numQuestions; ++i) {
             Question question = questions.get(i);
             int userAnswer = answers.get(i);
             int correctAnswer = question.lhs * question.rhs;
-            if (userAnswer == question.lhs * question.rhs)
+            if (userAnswer == correctAnswer)
                 System.out.println(
                         "Question '" + question.lhs + " * " + question.rhs + "' correct.\n  Answer: " + correctAnswer);
             else
@@ -46,5 +37,21 @@ public class Quiz {
 
             System.out.println();
         }
+    }
+
+    static void promptAnswers() {
+        for (int i = 0; i < numQuestions; ++i) {
+            int lhs = randomizer.nextInt(minFactor, maxFactor);
+            int rhs = randomizer.nextInt(minFactor, maxFactor);
+            System.out.println(lhs + " * " + rhs + " = ");
+
+            questions.add(new Question(lhs, rhs));
+            answers.add(scanner.nextInt());
+        }
+    }
+
+    public static void main(String[] args) {
+        promptAnswers();
+        printReport();
     }
 }
