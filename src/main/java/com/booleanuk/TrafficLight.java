@@ -1,8 +1,8 @@
 package com.booleanuk;
 
 public class TrafficLight {
-    private TrafficLightColor previousColor;
-    private TrafficLightColor color;
+    private TrafficLightColor previousColor = TrafficLightColor.Red;
+    private TrafficLightColor color = TrafficLightColor.Yellow;
 
     private enum TrafficLightColor {
         Green,
@@ -15,6 +15,7 @@ public class TrafficLight {
     }
 
     public void nextState() {
+        this.previousColor = this.color;
         switch (this.color) {
             case Green:
                 this.color = TrafficLightColor.Yellow;
