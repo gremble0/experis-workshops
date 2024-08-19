@@ -1,27 +1,33 @@
 package com.booleanuk;
 
 public class TrafficLight {
+    private TrafficLightColor previousColor;
     private TrafficLightColor color;
 
     private enum TrafficLightColor {
-        Red,
-        Yellow,
         Green,
+        Yellow,
+        Red,
     }
 
     public boolean canGo() {
         return this.color == TrafficLightColor.Green;
     }
 
-    public void setGreen() {
-        this.color = TrafficLightColor.Green;
-    }
-
-    public void setYellow() {
-        this.color = TrafficLightColor.Yellow;
-    }
-
-    public void setRed() {
-        this.color = TrafficLightColor.Red;
+    public void nextState() {
+        switch (this.color) {
+            case Green:
+                this.color = TrafficLightColor.Yellow;
+                break;
+            case Red:
+                this.color = TrafficLightColor.Yellow;
+                break;
+            case Yellow:
+                if (this.previousColor == TrafficLightColor.Red)
+                    this.color = TrafficLightColor.Green;
+                else
+                    this.color = TrafficLightColor.Red;
+                break;
+        }
     }
 }
